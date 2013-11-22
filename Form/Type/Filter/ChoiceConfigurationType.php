@@ -47,4 +47,3 @@ class ChoiceConfigurationType extends AbstractType
         return 'iteo_type_filter_choice_configuration';
     }
 }
-

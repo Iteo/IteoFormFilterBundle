@@ -54,5 +54,4 @@ class ConditionType extends AbstractType
         );
     }
 
-
 }

@@ -13,4 +13,3 @@ class NonExistingTypeException extends \InvalidArgumentException
         parent::__construct(sprintf('ConditionType of type "%s" does not exist.', $type));
     }
 }
-

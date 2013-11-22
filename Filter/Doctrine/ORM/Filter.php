@@ -22,7 +22,7 @@ abstract class Filter implements FilterInterface
 
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
-     * @param mixed $parameter
+     * @param mixed                                                     $parameter
      */
     protected function applyWhere(QueryInterface $query, $parameter)
     {

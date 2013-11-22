@@ -24,7 +24,6 @@ class BuildConditionFormListener implements EventSubscriberInterface
         $this->factory = $factory;
     }
 
-
     public static function getSubscribedEvents()
     {
         return array(

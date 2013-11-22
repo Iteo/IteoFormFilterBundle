@@ -3,26 +3,25 @@
 namespace spec\Iteo\Bundle\FormFilterBundle\Condition;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class ConditionControllerSpec extends ObjectBehavior
 {
 
     /**
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController $filterController
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController                       $filterController
      * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistry $conditionRegistry
      */
-    function let($filterController, $conditionRegistry)
+    public function let($filterController, $conditionRegistry)
     {
         $this->beConstructedWith($filterController, $conditionRegistry);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Condition\ConditionController');
     }
 
-    function it_should_be_condition_controller()
+    public function it_should_be_condition_controller()
     {
         $this->shouldImplement('Iteo\Bundle\FormFilterBundle\Condition\ConditionControllerInterface');
     }
@@ -30,20 +29,19 @@ class ConditionControllerSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_allow_to_filter_query_with_empty_array_of_conditions($query)
+    public function it_should_allow_to_filter_query_with_empty_array_of_conditions($query)
     {
         $this->filter($query, array());
     }
 
-
     /**
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController $filterController
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController                       $filterController
      * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistry $conditionRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface $condition
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface         $conditionType
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface                   $query
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface                  $condition
      */
-    function it_should_filter_one_condition_proper($filterController, $conditionRegistry, $conditionType, $query, $condition)
+    public function it_should_filter_one_condition_proper($filterController, $conditionRegistry, $conditionType, $query, $condition)
     {
         $this->beConstructedWith($filterController, $conditionRegistry);
 
@@ -55,7 +53,6 @@ class ConditionControllerSpec extends ObjectBehavior
         $conditionType->getField()->willReturn('field_name');
         $conditionType->getFilterName()->willReturn('filter_name');
         $conditionRegistry->getType('field_condition_type')->willReturn($conditionType);
-
 
         $this->filter($query, array($condition));
 
@@ -63,13 +60,13 @@ class ConditionControllerSpec extends ObjectBehavior
     }
 
     /**
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController $filterController
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController                       $filterController
      * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistry $conditionRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface $condition
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface         $conditionType
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface                   $query
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface                  $condition
      */
-    function it_should_filter_object_condition_proper($filterController, $conditionRegistry, $conditionType, $query, $condition)
+    public function it_should_filter_object_condition_proper($filterController, $conditionRegistry, $conditionType, $query, $condition)
     {
         $this->beConstructedWith($filterController, $conditionRegistry);
 
@@ -82,22 +79,21 @@ class ConditionControllerSpec extends ObjectBehavior
         $conditionType->getFilterName()->willReturn('filter_name');
         $conditionRegistry->getType('field_condition_type')->willReturn($conditionType);
 
-
         $this->filter($query, $condition);
 
         $filterController->filter($query, 'filter_name', 'field_name', $configuration)->shouldBeCalled();
     }
 
     /**
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController $filterController
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController                       $filterController
      * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistry $conditionRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType1
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface $condition
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface $condition1
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface         $conditionType
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface         $conditionType1
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface                   $query
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface                  $condition
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface                  $condition1
      */
-    function it_should_filter_conditions_proper($filterController, $conditionRegistry, $conditionType, $conditionType1, $query, $condition, $condition1)
+    public function it_should_filter_conditions_proper($filterController, $conditionRegistry, $conditionType, $conditionType1, $query, $condition, $condition1)
     {
         $this->beConstructedWith($filterController, $conditionRegistry);
 
@@ -123,14 +119,14 @@ class ConditionControllerSpec extends ObjectBehavior
     }
 
     /**
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController $filterController
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController                       $filterController
      * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistry $conditionRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType1
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface $condition
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface $condition1
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface         $conditionType
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface         $conditionType1
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface                  $condition
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface                  $condition1
      */
-    function it_should_return_array_of_active_conditions($filterController, $conditionRegistry, $conditionType, $conditionType1, $condition, $condition1)
+    public function it_should_return_array_of_active_conditions($filterController, $conditionRegistry, $conditionType, $conditionType1, $condition, $condition1)
     {
         $this->beConstructedWith($filterController, $conditionRegistry);
 
@@ -156,12 +152,12 @@ class ConditionControllerSpec extends ObjectBehavior
     }
 
     /**
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController $filterController
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterController                       $filterController
      * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistry $conditionRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface $condition
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface         $conditionType
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\ConditionInterface                  $condition
      */
-    function it_should_run_is_active_for_given_filter_name($filterController, $conditionRegistry, $conditionType, $condition)
+    public function it_should_run_is_active_for_given_filter_name($filterController, $conditionRegistry, $conditionType, $condition)
     {
         $this->beConstructedWith($filterController, $conditionRegistry);
 

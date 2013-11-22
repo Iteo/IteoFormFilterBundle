@@ -47,4 +47,3 @@ class StringConfigurationType extends AbstractType
         return 'iteo_type_filter_string_configuration';
     }
 }
-

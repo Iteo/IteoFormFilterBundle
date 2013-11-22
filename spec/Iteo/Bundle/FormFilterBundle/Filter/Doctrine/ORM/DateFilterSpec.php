@@ -8,17 +8,17 @@ use Prophecy\Argument;
 
 class DateFilterSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Filter\Doctrine\ORM\DateFilter');
     }
 
-    function it_should_be_doctrine_orm_filter()
+    public function it_should_be_doctrine_orm_filter()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Filter\Doctrine\ORM\Filter');
     }
 
-    function it_should_be_filter()
+    public function it_should_be_filter()
     {
         $this->shouldImplement('Iteo\Bundle\FormFilterBundle\Filter\FilterInterface');
     }
@@ -26,7 +26,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_do_nothing_when_passed_data_has_no_value($query)
+    public function it_should_do_nothing_when_passed_data_has_no_value($query)
     {
         $query->andWhere(Argument::any())->shouldNotBeCalled();
 
@@ -36,7 +36,7 @@ class DateFilterSpec extends ObjectBehavior
         $this->filter($query, 'field', array());
     }
 
-    function it_is_not_active_when_passed_data_has_no_value()
+    public function it_is_not_active_when_passed_data_has_no_value()
     {
         $this->isActive(null)->shouldReturn(false);
         $this->isActive(false)->shouldReturn(false);
@@ -47,7 +47,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_do_nothing_when_passed_data_has_empty_value($query)
+    public function it_should_do_nothing_when_passed_data_has_empty_value($query)
     {
         $query->andWhere(Argument::any())->shouldNotBeCalled();
 
@@ -56,7 +56,7 @@ class DateFilterSpec extends ObjectBehavior
         $this->filter($query, 'field', array('value' => ''));
     }
 
-    function it_is_not_active_when_passed_data_has_empty_value()
+    public function it_is_not_active_when_passed_data_has_empty_value()
     {
         $this->isActive(array('value' => null))->shouldReturn(false);
         $this->isActive(array('value' => false))->shouldReturn(false);
@@ -66,7 +66,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_equal_condition_by_default($query)
+    public function it_should_create_proper_equal_condition_by_default($query)
     {
         $value = new \DateTime();
         $data = array('value' => $value);
@@ -83,7 +83,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_null_operator($query)
+    public function it_should_create_proper_condition_for_null_operator($query)
     {
         $data = array('value' => '', 'type' => DateFilter::TYPE_NULL);
         $query->andWhere('o.field IS NULL')->shouldBeCalled();
@@ -95,7 +95,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_not_null_operator($query)
+    public function it_should_create_proper_condition_for_not_null_operator($query)
     {
         $data = array('value' => '', 'type' => DateFilter::TYPE_NOT_NULL);
         $query->andWhere('o.field IS NOT NULL')->shouldBeCalled();
@@ -107,7 +107,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_equal_operator($query)
+    public function it_should_create_proper_condition_for_equal_operator($query)
     {
         $value = new \DateTime();
         $data = array('value' => $value, 'type' => DateFilter::TYPE_EQUAL);
@@ -124,7 +124,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_less_then_operator($query)
+    public function it_should_create_proper_condition_for_less_then_operator($query)
     {
         $this->test($query, new \DateTime(), DateFilter::TYPE_LESS_THAN, '<');
     }
@@ -132,7 +132,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_less_equal_operator($query)
+    public function it_should_create_proper_condition_for_less_equal_operator($query)
     {
         $this->test($query, new \DateTime(), DateFilter::TYPE_LESS_EQUAL, '<=');
     }
@@ -140,7 +140,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_greater_then_operator($query)
+    public function it_should_create_proper_condition_for_greater_then_operator($query)
     {
         $this->test($query, new \DateTime(), DateFilter::TYPE_GREATER_THAN, '>');
     }
@@ -148,7 +148,7 @@ class DateFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_greater_equal_operator($query)
+    public function it_should_create_proper_condition_for_greater_equal_operator($query)
     {
         $this->test($query, new \DateTime(), DateFilter::TYPE_GREATER_EQUAL, '>=');
     }

@@ -3,7 +3,6 @@
 namespace spec\Iteo\Bundle\FormFilterBundle\Filter;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class FilterControllerSpec extends ObjectBehavior
 {
@@ -11,28 +10,27 @@ class FilterControllerSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Registry\FilterRegistry $filterRegistry
      */
-    function let($filterRegistry)
+    public function let($filterRegistry)
     {
         $this->beConstructedWith($filterRegistry);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Filter\FilterController');
     }
 
-    function it_should_be_filter_manager()
+    public function it_should_be_filter_manager()
     {
         $this->shouldImplement('Iteo\Bundle\FormFilterBundle\Filter\FilterControllerInterface');
     }
 
-
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Registry\FilterRegistry $filterRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterInterface $filter
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterInterface         $filter
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface    $query
      */
-    function it_should_run_filter_for_given_filter_name($filterRegistry, $filter, $query)
+    public function it_should_run_filter_for_given_filter_name($filterRegistry, $filter, $query)
     {
         $name = 'filter';
         $field = 'field';
@@ -46,9 +44,9 @@ class FilterControllerSpec extends ObjectBehavior
 
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Registry\FilterRegistry $filterRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterInterface $filter
+     * @param \Iteo\Bundle\FormFilterBundle\Filter\FilterInterface         $filter
      */
-    function it_should_run_is_active_for_given_filter_name($filterRegistry, $filter)
+    public function it_should_run_is_active_for_given_filter_name($filterRegistry, $filter)
     {
         $name = 'filter';
         $data = array('key' => 'value');

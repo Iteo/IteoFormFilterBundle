@@ -21,7 +21,6 @@ class Query implements QueryInterface
         $this->uniqueParameterId = 0;
     }
 
-
     public function andWhere($where)
     {
         $this->queryBuilder->andWhere($where);

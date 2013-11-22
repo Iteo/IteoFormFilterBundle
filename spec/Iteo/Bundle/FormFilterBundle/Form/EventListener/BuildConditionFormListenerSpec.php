@@ -9,10 +9,10 @@ class BuildConditionFormListenerSpec extends ObjectBehavior
 {
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistryInterface $conditionTypeRegistry
-     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface $conditionType
-     * @param \Symfony\Component\Form\FormFactoryInterface $factory
+     * @param \Iteo\Bundle\FormFilterBundle\Condition\Type\ConditionTypeInterface                  $conditionType
+     * @param \Symfony\Component\Form\FormFactoryInterface                                         $factory
      */
-    function let($conditionTypeRegistry, $conditionType, $factory)
+    public function let($conditionTypeRegistry, $conditionType, $factory)
     {
         $conditionType->getConfigurationFormType()->willReturn('iteo_form_filter_condition_created_at_type_configuration');
         $conditionTypeRegistry->getType(Argument::any())->willReturn($conditionType);
@@ -20,24 +20,24 @@ class BuildConditionFormListenerSpec extends ObjectBehavior
         $this->beConstructedWith($conditionTypeRegistry, $factory);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Form\EventListener\BuildConditionFormListener');
     }
 
-    function it_should_be_event_subscriber()
+    public function it_should_be_event_subscriber()
     {
         $this->shouldImplement('Symfony\Component\EventDispatcher\EventSubscriberInterface');
     }
 
     /**
-     * @param \Symfony\Component\Form\FormFactoryInterface $factory
-     * @param \Symfony\Component\Form\FormEvent $event
+     * @param \Symfony\Component\Form\FormFactoryInterface           $factory
+     * @param \Symfony\Component\Form\FormEvent                      $event
      * @param \Iteo\Bundle\FormFilterBundle\Model\ConditionInterface $condition
-     * @param \Symfony\Component\Form\Form $form
-     * @param \Symfony\Component\Form\Form $field
+     * @param \Symfony\Component\Form\Form                           $form
+     * @param \Symfony\Component\Form\Form                           $field
      */
-    function it_should_add_configuration_fields_in_pre_set_data($factory, $event, $condition, $form, $field)
+    public function it_should_add_configuration_fields_in_pre_set_data($factory, $event, $condition, $form, $field)
     {
         $event->getData()->shouldBeCalled()->willReturn($condition);
         $event->getForm()->shouldBeCalled()->willReturn($form);

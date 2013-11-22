@@ -8,17 +8,17 @@ use Prophecy\Argument;
 
 class StringFilterSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Filter\Doctrine\ORM\StringFilter');
     }
 
-    function it_should_be_doctrine_orm_filter()
+    public function it_should_be_doctrine_orm_filter()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Filter\Doctrine\ORM\Filter');
     }
 
-    function it_should_be_filter()
+    public function it_should_be_filter()
     {
         $this->shouldImplement('Iteo\Bundle\FormFilterBundle\Filter\FilterInterface');
     }
@@ -26,7 +26,7 @@ class StringFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_do_nothing_when_passed_data_has_no_value($query)
+    public function it_should_do_nothing_when_passed_data_has_no_value($query)
     {
         $query->andWhere(Argument::any())->shouldNotBeCalled();
 
@@ -36,7 +36,7 @@ class StringFilterSpec extends ObjectBehavior
         $this->filter($query, 'field', array());
     }
 
-    function it_is_not_active_when_passed_data_has_no_value()
+    public function it_is_not_active_when_passed_data_has_no_value()
     {
         $this->isActive(null)->shouldReturn(false);
         $this->isActive(false)->shouldReturn(false);
@@ -47,7 +47,7 @@ class StringFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_do_nothing_when_passed_data_has_empty_value($query)
+    public function it_should_do_nothing_when_passed_data_has_empty_value($query)
     {
         $query->andWhere(Argument::any())->shouldNotBeCalled();
 
@@ -56,7 +56,7 @@ class StringFilterSpec extends ObjectBehavior
         $this->filter($query, 'field', array('value' => ''));
     }
 
-    function it_is_not_active_when_passed_data_has_empty_value()
+    public function it_is_not_active_when_passed_data_has_empty_value()
     {
         $this->isActive(array('value' => null))->shouldReturn(false);
         $this->isActive(array('value' => false))->shouldReturn(false);
@@ -66,7 +66,7 @@ class StringFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_like_condition_by_default($query)
+    public function it_should_create_proper_like_condition_by_default($query)
     {
         $value = 'string';
         $data = array('value' => $value);
@@ -81,7 +81,7 @@ class StringFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_equal_operator($query)
+    public function it_should_create_proper_condition_for_equal_operator($query)
     {
         $value = 'string';
         $data = array('value' => $value, 'type' => StringFilter::TYPE_EQUAL);
@@ -96,7 +96,7 @@ class StringFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_contains_operator($query)
+    public function it_should_create_proper_condition_for_contains_operator($query)
     {
         $this->test($query, 'string', StringFilter::TYPE_CONTAINS, 'LIKE');
     }
@@ -104,7 +104,7 @@ class StringFilterSpec extends ObjectBehavior
     /**
      * @param \Iteo\Bundle\FormFilterBundle\Filter\Query\QueryInterface $query
      */
-    function it_should_create_proper_condition_for_not_contains_operator($query)
+    public function it_should_create_proper_condition_for_not_contains_operator($query)
     {
         $this->test($query, 'string', StringFilter::TYPE_NOT_CONTAINS, 'NOT LIKE');
     }

@@ -7,12 +7,12 @@ use Prophecy\Argument;
 
 class ChoiceConfigurationTypeSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Iteo\Bundle\FormFilterBundle\Form\Type\Filter\ChoiceConfigurationType');
     }
 
-    function it_should_be_a_form_type()
+    public function it_should_be_a_form_type()
     {
         $this->shouldHaveType('Symfony\Component\Form\AbstractType');
     }
@@ -20,7 +20,7 @@ class ChoiceConfigurationTypeSpec extends ObjectBehavior
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      */
-    function it_should_build_form_with_operator_and_value_fields($builder)
+    public function it_should_build_form_with_operator_and_value_fields($builder)
     {
         $builder
             ->add('type', 'choice', Argument::any())
@@ -37,7 +37,7 @@ class ChoiceConfigurationTypeSpec extends ObjectBehavior
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
      */
-    function it_should_initialize_field_options_be_default($resolver)
+    public function it_should_initialize_field_options_be_default($resolver)
     {
         $resolver->setDefaults(Argument::withKey('field_options'))->shouldBeCalled();
 
@@ -47,7 +47,7 @@ class ChoiceConfigurationTypeSpec extends ObjectBehavior
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
      */
-    function it_should_initialize_choices_be_default($resolver)
+    public function it_should_initialize_choices_be_default($resolver)
     {
         $resolver->setDefaults(Argument::withKey('choices'))->shouldBeCalled();
 
@@ -57,7 +57,7 @@ class ChoiceConfigurationTypeSpec extends ObjectBehavior
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
      */
-    function it_should_initialize_type_empty_value_be_default($resolver)
+    public function it_should_initialize_type_empty_value_be_default($resolver)
     {
         $resolver->setDefaults(Argument::withKey('type_empty_value'))->shouldBeCalled();
 
