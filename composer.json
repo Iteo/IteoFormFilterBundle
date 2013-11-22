@@ -1,0 +1,39 @@
+{
+    "name": "iteo/form-filter-bundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Przemysław Piechota",
+            "email": "kibao.pl@gmail.com"
+        },
+        {
+            "name":     "Iteo",
+            "homepage": "http://iteo.co"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+
+        "symfony/framework-bundle": "~2.1",
+        "symfony/form": "~2.1",
+        "doctrine/doctrine-bundle": "*",
+        "doctrine/orm": "~2.1"
+    },
+    "require-dev": {
+        "phpspec/prophecy": "1.0.*@dev",
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": { "Iteo\\Bundle\\FormFilterBundle\\": "" }
+    },
+    "target-dir": "Iteo/Bundle/FormFilterBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}

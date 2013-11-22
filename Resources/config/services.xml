@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="iteo.form_filter.condition_controller.class">Iteo\Bundle\FormFilterBundle\Condition\ConditionController</parameter>
+        <parameter key="iteo.form_filter.filter_controller.class">Iteo\Bundle\FormFilterBundle\Filter\FilterController</parameter>
+
+        <parameter key="iteo.form_filter.registry.condition_type.class">Iteo\Bundle\FormFilterBundle\Condition\Type\Registry\ConditionTypeRegistry</parameter>
+        <parameter key="iteo.form_filter.registry.filter.class">Iteo\Bundle\FormFilterBundle\Filter\Registry\FilterRegistry</parameter>
+
+        <parameter key="iteo.form_filter.form.type.condition.class">Iteo\Bundle\FormFilterBundle\Form\Type\ConditionType</parameter>
+        <parameter key="iteo.form_filter.form.type.condition_choice.class">Iteo\Bundle\FormFilterBundle\Form\Type\ConditionChoiceType</parameter>
+
+        <parameter key="iteo.form_filter.filter.choice.class">Iteo\Bundle\FormFilterBundle\Filter\Doctrine\ORM\ChoiceFilter</parameter>
+        <parameter key="iteo.form_filter.filter.date.class">Iteo\Bundle\FormFilterBundle\Filter\Doctrine\ORM\DateFilter</parameter>
+        <parameter key="iteo.form_filter.filter.string.class">Iteo\Bundle\FormFilterBundle\Filter\Doctrine\ORM\StringFilter</parameter>
+
+        <parameter key="iteo.form.filter.form.type.filter_configuration.choice.class">Iteo\Bundle\FormFilterBundle\Form\Type\Filter\ChoiceConfigurationType</parameter>
+        <parameter key="iteo.form.filter.form.type.filter_configuration.date.class">Iteo\Bundle\FormFilterBundle\Form\Type\Filter\DateConfigurationType</parameter>
+        <parameter key="iteo.form.filter.form.type.filter_configuration.string.class">Iteo\Bundle\FormFilterBundle\Form\Type\Filter\StringConfigurationType</parameter>
+    </parameters>
+
+    <services>
+        <service id="iteo.form_filter.condition_controller" class="%iteo.form_filter.condition_controller.class%">
+            <argument type="service" id="iteo.form_filter.filter_controller" />
+            <argument type="service" id="iteo.form_filter.registry.condition_type" />
+        </service>
+
+        <service id="iteo.form_filter.registry.condition_type" class="%iteo.form_filter.registry.condition_type.class%" />
+
+        <service id="iteo.form_filter.form.type.condition" class="%iteo.form_filter.form.type.condition.class%">
+            <argument>%iteo.form_filter.model.condition.class%</argument>
+            <argument type="service" id="iteo.form_filter.registry.condition_type"/>
+            <tag name="form.type" alias="iteo_form_filter_condition" />
+        </service>
+
+        <service id="iteo.form_filter.form.type.condition_choice" class="%iteo.form_filter.form.type.condition_choice.class%">
+            <argument>%iteo.form_filter.condition_types%</argument>
+            <tag name="form.type" alias="iteo_form_filter_condition_choice" />
+        </service>
+
+        <service id="iteo.form_filter.filter_controller" class="%iteo.form_filter.filter_controller.class%">
+            <argument type="service" id="iteo.form_filter.registry.filter" />
+        </service>
+
+        <service id="iteo.form_filter.registry.filter" class="%iteo.form_filter.registry.filter.class%" />
+
+        <service id="iteo.form_filter.filter.choice" class="%iteo.form_filter.filter.choice.class%" public="false">
+            <tag name="iteo.form_filter.filter" type="iteo_choice_filter" />
+        </service>
+
+        <service id="iteo.form_filter.filter.date" class="%iteo.form_filter.filter.date.class%" public="false">
+            <tag name="iteo.form_filter.filter" type="iteo_date_filter" />
+        </service>
+
+        <service id="iteo.form_filter.filter.string" class="%iteo.form_filter.filter.string.class%" public="false">
+            <tag name="iteo.form_filter.filter" type="iteo_string_filter" />
+        </service>
+
+        <service id="iteo.form_filter.form.type.filter_configuration.choice" class="%iteo.form.filter.form.type.filter_configuration.choice.class%">
+            <tag name="form.type" alias="iteo_type_filter_choice_configuration" />
+        </service>
+        <service id="iteo.form_filter.form.type.filter_configuration.date" class="%iteo.form.filter.form.type.filter_configuration.date.class%">
+            <tag name="form.type" alias="iteo_type_filter_date_configuration" />
+        </service>
+        <service id="iteo.form_filter.form.type.filter_configuration.string" class="%iteo.form.filter.form.type.filter_configuration.string.class%">
+            <tag name="form.type" alias="iteo_type_filter_string_configuration" />
+        </service>
+    </services>
+</container>
