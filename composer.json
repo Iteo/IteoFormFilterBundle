@@ -1,5 +1,6 @@
 {
     "name": "iteo/form-filter-bundle",
+    "description": "Symfony IteoFormFilterBundle",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
@@ -17,7 +18,7 @@
 
         "symfony/framework-bundle": "~2.1",
         "symfony/form": "~2.1",
-        "doctrine/doctrine-bundle": "*",
+        "doctrine/doctrine-bundle": "~1.1",
         "doctrine/orm": "~2.1"
     },
     "require-dev": {
