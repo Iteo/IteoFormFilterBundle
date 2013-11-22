@@ -16,7 +16,11 @@ class ChoiceConfigurationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', 'choice', array('choices' => $options['choices'], 'required' => false, 'empty_value' => $options['type_empty_value']))
+            ->add('type', 'choice', array(
+                    'choices' => $options['choices'],
+                    'required' => false,
+                    'empty_value' => $options['type_empty_value']
+            ))
             ->add('value', 'choice', array_merge(array('required' => false), $options['field_options']))
         ;
     }

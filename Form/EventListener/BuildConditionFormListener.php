@@ -63,7 +63,7 @@ class BuildConditionFormListener implements EventSubscriberInterface
             $conditionType->getConfigurationFormType(),
             $data,
             array(
-//                'auto_initialize' => false
+                //'auto_initialize' => false
             )
         );
 
